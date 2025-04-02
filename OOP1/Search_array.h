@@ -50,7 +50,7 @@ namespace Search_array {
         }
     }
 
-    //функция линейного поиска в массиве array типа T размером size, поиск элемента number типа T
+    //функция линейного поиска в массиве array типа T размером size, поиск элемента number типа T.
     template<typename T>
     size_t SearchInArray_equal(const T* array, size_t size, T number) {
         for (size_t i = 0; i < size; i++) {
@@ -209,46 +209,76 @@ namespace Search_array {
 
     // Функция сортировки слиянием. Принимает массив array типа T, левую и правую границу left rihgt типа size_t
     template<typename T>
-    void mergeSort(T* array, size_t L, size_t R) {
+    void sortmerge(T* array, size_t L, size_t R) {
         if (L < R) {
             size_t mid = L + (R - L) / 2; // Находим середину
 
             // Рекурсивно сортируем левую и правую половины
-            mergeSort(array, L, mid);
-            mergeSort(array, mid + 1, R);
+            sortmerge(array, L, mid);
+            sortmerge(array, mid + 1, R);
 
             // Сливаем две отсортированные половины
             merge(array, L, mid, R);
         }
     }
 
-    // Функция для разделения массива
+    // Функция быстрой сортировки. Принимает массив array типа T, левую и правую границу left rihgt типа size_t
     template<typename T>
-    size_t partition(T* array, size_t low, size_t high) {
-        T pivot = array[high]; // Опорный элемент (последний элемент)
-        size_t i = low; // Индекс для элементов меньше опорного
+    void sortquick(T* array, size_t L, size_t R) {
+        if (L >= R) return; //База рекурсии
 
-        for (size_t j = low; j < high; j++) {
-            if (array[j] < pivot) {
-                std::swap(array[i], array[j]); // Меняем местами
+        T pivot = array[(L + R) / 2];
+        size_t i = L;
+        size_t j = R;
+
+        while (i <= j) {
+            // Ищем элемент, который больше или равен pivot
+            while (i <= R && array[i] < pivot) i++;
+            // Ищем элемент, который меньше или равен pivot
+            while (j >= L && array[j] > pivot) j--;
+
+            if (i <= j) {
+                std::swap(array[i], array[j]);
                 i++;
+                if (j > 0) j--;
             }
         }
-        std::swap(array[i], array[high]); // Ставим опорный элемент на своё место
-        return i; // Возвращаем индекс опорного элемента
+        if (j > L) sortquick(array, L, j);
+        if (i < R) sortquick(array, i, R);
     }
 
-    // Основная функция QuickSort
+    // Функция shell сортировки. Принимает массив array типа T, левую и правую границу left rihgt типа size_t
     template<typename T>
-    void quickSort(T* array, size_t low, size_t high) {
-        if (low < high) {
-            size_t pivotIndex = partition(array, low, high); // Индекс опорного элемента
-
-            // Рекурсивно сортируем левую и правую части
-            if (pivotIndex > 0) { // Проверка, чтобы избежать underflow
-                quickSort(array, low, pivotIndex - 1);
+    void sortshell(T* array, size_t R) {
+        size_t d = R / 2; //d - половина от размера массива
+        while (d >= 1) { //Если d больше 1 - работаем
+            for (size_t i = d; i < R; i++) {
+                size_t j = i;
+                while ((j >= d) && (array[j - d] > array[j])) {
+                    std::swap(array[j], array[j - d]);
+                    j = j - d;
+                }
             }
-            quickSort(array, pivotIndex + 1, high);
+            d = d / 2; // уменьшаем шаг в 2 раза
         }
     }
+
+    // Функия для перемешивания массива. Принимает
+    template<typename T>
+    void shuffle(T* a, size_t n)
+    {
+        for (size_t i = 0; i < n; i++)
+            std::swap(a[i], a[rand() % n]);
+    }
+
+    // Sorts array a[0..n-1] using Bogo sort
+    template<typename T>
+    void bogosort(T* a, size_t n)
+    {
+        // Если массив не отсортирован - перемешиваем
+        while (!is_sorted(a, n))
+            shuffle(a, n);
+    }
+
+
 }

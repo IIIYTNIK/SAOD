@@ -256,58 +256,218 @@ namespace test {
         }
     }
 
-    //Автоматические тесты для функции quickSort
-    void test_quickSort() {
+    //Автоматические тесты для функции sortmerge
+    void test_mergeSort() {
         // Тест: Сортировка уже отсортированного массива
         {
             int arr[] = { 1, 2, 3, 4, 5 };
             size_t size = sizeof(arr) / sizeof(arr[0]);
-            quickSort(arr, 0, size - 1);
+            sortmerge(arr, 0, size - 1);
             assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
         }
         // Тест: Сортировка массива, отсортированного в обратном порядке
         {
             int arr[] = { 5, 4, 3, 2, 1 };
             size_t size = sizeof(arr) / sizeof(arr[0]);
-            quickSort(arr, 0, size - 1);
+            sortmerge(arr, 0, size - 1);
             assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
         }
         // Тест: Сортировка массива со случайными элементами
         {
             int arr[] = { 12, 11, 13, 5, 6, 7 };
             size_t size = sizeof(arr) / sizeof(arr[0]);
-            quickSort(arr, 0, size - 1);
+            sortmerge(arr, 0, size - 1);
             assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
         }
         // Тест: Сортировка массива из одного элемента
         {
             int arr[] = { 42 };
             size_t size = sizeof(arr) / sizeof(arr[0]);
-            quickSort(arr, 0, size - 1);
+            sortmerge(arr, 0, size - 1);
             assert(is_sorted(arr, size)); // Массив из одного элемента считается отсортированным
         }
         // Тест: Сортировка массива с повторяющимися элементами
         {
             int arr[] = { 5, 3, 2, 5, 1, 2 };
             size_t size = sizeof(arr) / sizeof(arr[0]);
-            quickSort(arr, 0, size - 1);
+            sortmerge(arr, 0, size - 1);
             assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
         }
         // Тест: Сортировка массива с отрицательными числами
         {
             int arr[] = { -5, -1, -3, 0, 2, -4 };
             size_t size = sizeof(arr) / sizeof(arr[0]);
-            quickSort(arr, 0, size - 1);
+            sortmerge(arr, 0, size - 1);
             assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
         }
         // Тест: Сортировка массива с большими числами
         {
             int arr[] = { 1000, 500, 2000, 100, 3000 };
             size_t size = sizeof(arr) / sizeof(arr[0]);
-            quickSort(arr, 0, size - 1);
+            sortmerge(arr, 0, size - 1);
             assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
         }
     }
+
+    //Автоматические тесты для функции sortquick
+    void test_quickSort() {
+        // Тест: Сортировка уже отсортированного массива
+        {
+            int arr[] = { 1, 2, 3, 4, 5 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            sortquick(arr, 0, size - 1);
+            assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
+        }
+        // Тест: Сортировка массива, отсортированного в обратном порядке
+        {
+            int arr[] = { 5, 4, 3, 2, 1 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            sortquick(arr, 0, size - 1);
+            assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
+        }
+        // Тест: Сортировка массива со случайными элементами
+        {
+            int arr[] = { 12, 11, 13, 5, 6, 7 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            sortquick(arr, 0, size - 1);
+            assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
+        }
+        // Тест: Сортировка массива из одного элемента
+        {
+            int arr[] = { 42 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            sortquick(arr, 0, size - 1);
+            assert(is_sorted(arr, size)); // Массив из одного элемента считается отсортированным
+        }
+        // Тест: Сортировка массива с повторяющимися элементами
+        {
+            int arr[] = { 5, 3, 2, 5, 1, 2 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            sortquick(arr, 0, size - 1);
+            assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
+        }
+        // Тест: Сортировка массива с отрицательными числами
+        {
+            int arr[] = { -5, -1, -3, 0, 2, -4 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            sortquick(arr, 0, size - 1);
+            assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
+        }
+        // Тест: Сортировка массива с большими числами
+        {
+            int arr[] = { 1000, 500, 2000, 100, 3000 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            sortquick(arr, 0, size - 1);
+            assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
+        }
+    }
+
+    //Автоматические тесты для функции sortquick
+    void test_shellSort() {
+        // Тест: Сортировка уже отсортированного массива
+        {
+            int arr[] = { 1, 2, 3, 4, 5 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            sortshell(arr, size - 1);
+            assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
+        }
+        // Тест: Сортировка массива, отсортированного в обратном порядке
+        {
+            int arr[] = { 5, 4, 3, 2, 1 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            sortshell(arr, size - 1);
+            assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
+        }
+        // Тест: Сортировка массива со случайными элементами
+        {
+            int arr[] = { 12, 11, 13, 5, 6, 7 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            sortshell(arr, size - 1);
+            assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
+        }
+        // Тест: Сортировка массива из одного элемента
+        {
+            int arr[] = { 42 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            sortshell(arr, size - 1);
+            assert(is_sorted(arr, size)); // Массив из одного элемента считается отсортированным
+        }
+        // Тест: Сортировка массива с повторяющимися элементами
+        {
+            int arr[] = { 5, 3, 2, 5, 1, 2 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            sortshell(arr, size - 1);
+            assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
+        }
+        // Тест: Сортировка массива с отрицательными числами
+        {
+            int arr[] = { -5, -1, -3, 0, 2, -4 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            sortshell(arr, size - 1);
+            assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
+        }
+        // Тест: Сортировка массива с большими числами
+        {
+            int arr[] = { 1000, 500, 2000, 100, 3000 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            sortshell(arr, size - 1);
+            assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
+        }
+    }
+
+    //Автоматические тесты для функции bogosort
+    void test_bogoSort() {
+        // Тест: Сортировка уже отсортированного массива
+        {
+            int arr[] = { 1, 2, 3, 4, 5 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            bogosort(arr, size - 1);
+            assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
+        }
+        // Тест: Сортировка массива, отсортированного в обратном порядке
+        {
+            int arr[] = { 5, 4, 3, 2, 1 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            bogosort(arr, size - 1);
+            assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
+        }
+        // Тест: Сортировка массива со случайными элементами
+        {
+            int arr[] = { 12, 11, 13, 5, 6, 7 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            bogosort(arr, size - 1);
+            assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
+        }
+        // Тест: Сортировка массива из одного элемента
+        {
+            int arr[] = { 42 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            bogosort(arr, size - 1);
+            assert(is_sorted(arr, size)); // Массив из одного элемента считается отсортированным
+        }
+        // Тест: Сортировка массива с повторяющимися элементами
+        {
+            int arr[] = { 5, 3, 2, 5, 1, 2 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            bogosort(arr, size - 1);
+            assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
+        }
+        // Тест: Сортировка массива с отрицательными числами
+        {
+            int arr[] = { -5, -1, -3, 0, 2, -4 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            bogosort(arr, size - 1);
+            assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
+        }
+        // Тест: Сортировка массива с большими числами
+        {
+            int arr[] = { 1000, 500, 2000, 100, 3000 };
+            size_t size = sizeof(arr) / sizeof(arr[0]);
+            bogosort(arr, size - 1);
+            assert(is_sorted(arr, size)); // Проверяем, что массив отсортирован
+        }
+    }
+
     // Тесты для функции is_sorted
     void is_sorted_assert() {
         // Тест: Массив отсортирован по возрастанию
@@ -372,6 +532,9 @@ namespace test {
         test_insertionSort();
         is_sorted_assert();
         test_quickSort();
+        test_mergeSort();
+        test_shellSort();
+        test_bogoSort();
         std::cout << "All tests passed!" << std::endl;
     }
 }

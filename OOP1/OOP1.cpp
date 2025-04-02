@@ -9,25 +9,24 @@ using namespace test;
 using namespace time_count;
 
 
-
-
 int main() {
     All_test();
 
-    const long long n = 40;
+    const long long n = 15;
 
     int TimeRequest = measure_time([&]() {
         int* array = random_array<int>(n, 1, 7);
 
-        quickSort(array, 0, n - 1);
-        for (int i = 0; i < n; i++) {
-            cout << array[i];
-        }
+        sortquick(array, 0, n - 1);
+        /*for (int i = 0; i < n; i++) {
+            cout << array[i] << "";
+        }*/
+        std::cout << "\n";
         delete[] array;
-        }// строки от лямда функции и до этой вставляются в функцию подсчёта времени
+        }// строки от лямда функции и до этой вставляются в функцию подсчёта времени.
     ); 
 
-    cout << TimeRequest;
+    std::cout << TimeRequest;
 
 
     return 0;
